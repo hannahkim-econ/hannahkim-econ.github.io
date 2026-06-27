@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hannah Kim — Economics</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-primary: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --border: #e0e0e0;
+      --bg: #fff;
+      --accent: #2a5298;
+      --accent-light: #eef2fb;
+      --font: 'Georgia', serif;
+      --font-sans: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-primary);
+      background: var(--bg);
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 18px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+    nav .site-name {
+      font-family: var(--font);
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: normal;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+    nav ul a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    nav ul a:hover { color: var(--accent); }
+
+    .hero {
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .avatar {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .hero-text h1 {
+      font-family: var(--font);
+      font-size: 26px;
+      font-weight: normal;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+    .hero-text .affil {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .hero-text .fields {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .hero-text .bio {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 14px;
+      max-width: 560px;
+    }
+    .hero-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .hero-links a {
+      font-size: 12px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 5px 14px;
+      border-radius: 3px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .hero-links a:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .paper { margin-bottom: 28px; }
+    .paper:last-child { margin-bottom: 0; }
+    .paper-title {
+      font-family: var(--font);
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .paper-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .paper-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 2px 9px;
+      border-radius: 2px;
+      background: #f4f4f4;
+      color: var(--text-muted);
+    }
+    .tag.jmp {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .paper-links {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .paper-links a {
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .paper-links a:hover { text-decoration: underline; }
+
+    .abstract-toggle {
+      font-size: 12px;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .abstract-toggle:hover { text-decoration: underline; }
+    .abstract-toggle .arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+      font-size: 10px;
+    }
+    .abstract-toggle.open .arrow { transform: rotate(90deg); }
+    .abstract-body {
+      display: none;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      border-left: 2px solid var(--border);
+      padding-left: 14px;
+    }
+    .abstract-body.open { display: block; }
+
+    .pres-list { list-style: none; }
+    .pres-list li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .pres-list li:last-child { border-bottom: none; }
+    .pres-name { color: var(--text-primary); }
+    .pres-year { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+
+    .teach-item {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .teach-item:last-child { border-bottom: none; }
+    .teach-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .teach-course { font-size: 14px; color: var(--text-primary); }
+    .teach-role { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+    .teach-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .teach-eval { margin-top: 8px; }
+    .eval-score { font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 8px; }
+    .eval-quotes { display: flex; flex-direction: column; gap: 6px; }
+    .eval-quotes blockquote { font-size: 13px; color: var(--text-secondary); font-style: italic; border-left: 2px solid var(--border); padding-left: 12px; margin: 0; }
+
+    .contact-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+    .contact-text a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contact-text a:hover { text-decoration: underline; }
+
+    footer {
+      padding: 24px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 560px) {
+      .hero { flex-direction: column; gap: 20px; }
+      .avatar { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; }
+      nav ul { gap: 14px; }
+      footer { flex-direction: column; gap: 4px; }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9T0QKHJ9R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C9T0QKHJ9R');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="site-name" href="#">Hannah Kim</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="cv.pdf">CV</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="about">
+  <img src="photo.jpg" alt="Hannah Kim" class="avatar">
+  <div class="hero-text">
+    <h1>Hannah Kim</h1>
+    <p class="affil">
+      PhD Candidate in Agricultural and Consumer Economics<br>
+      University of Illinois Urbana-Champaign<br>
+      Advisor: Sarah Janzen, Andrew Hultgren
+    </p>
+    <p class="fields">Environmental Economics &nbsp;·&nbsp; Development Economics &nbsp;·&nbsp; Health Economics &nbsp;·&nbsp; Agricultural Economics &nbsp;·&nbsp; Applied Microeconomics</p>
+    <p class="bio">
+      Welcome! I'm a PhD candidate studying how climate and extreme weather affect health and agricultural outcomes in low-income countries, with a focus on vulnerable populations and climate-sensitive sectors. My work sits at the intersection of development, environmental and agricultural economics.
+    </p>
+    <p class="bio">
+      I will be on the job market in fall 2026. Feel free to reach out — I'd love to connect.
+    </p>
+    <div class="hero-links">
+      <a href="cv.pdf">CV (PDF)</a>
+      <a href="mailto:hannah16@illinois.edu">Email</a>
+      <a href="https://www.linkedin.com/in/hannahkim-uiuc" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <p class="section-label">Research</p>
+
+  <div class="paper">
+    <p class="paper-title">Replanting Under Risk: Weather Shocks and Portfolio Choice in Perennial Agriculture</p>
+    <p class="paper-meta">Job market paper &nbsp;·&nbsp; Solo authored</p>
+    <div class="paper-tags">
+      <span class="tag jmp">Job market paper</span>
+      <span class="tag">Ethiopia · LSMS-ISA</span>
+    </div>
+    <div class="paper-links">
+      <a href="#">Draft (available upon request)</a>
+    </div>
+    <button class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">&#9654;</span> Abstract
+    </button>
+    <div class="abstract-body">
+      This paper studies how smallholder farmers adjust long-term crop choices in response to weather shocks. Using data from Ethiopian coffee farmers, I examine how weather-induced changes in expected profits and uncertainty affect decisions to replant or switch to alternative crops. The findings provide evidence on climate adaptation behavior and highlight trade-offs between farmers' responses and broader policy goals.
+    </div>
+  </div>
+
+  <div class="paper">
+    <p class="paper-title">Global Extreme Weather and Early Childhood Undernourishment</p>
+    <p class="paper-meta">with Andrew Hultgren and Sarah Janzen</p>
+    <div class="paper-tags">
+      <span class="tag">Working paper</span>
+      <span class="tag">DHS · ERA5 · 56+ countries</span>
+    </div>
+    <div class="paper-links">
+      <a href="#">Draft (available upon request)</a>
+    </div>
+    <button class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">&#9654;</span> Abstract
+    </button>
+    <div class="abstract-body">
+      This paper estimates the causal effects of prenatal and early-life extreme weather exposure on child nutritional status across 56+ low- and middle-income countries, linking ERA5 weather data to DHS child-level data. Extreme heat exacerbates the risk of stunting, underweight, and wasting, with effects strongest among toddlers aged 12–36 months; drought increases underweight risk and heavy rainfall raises wasting, particularly in rural households.
+    </div>
+  </div>
+
+  <div class="paper">
+    <p class="paper-title">Wildfire Damages in the United States</p>
+    <p class="paper-meta">with Andrew Hultgren</p>
+    <div class="paper-tags">
+      <span class="tag">Working paper</span>
+      <span class="tag">MODIS · county-level panel</span>
+    </div>
+    <button class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">&#9654;</span> Abstract
+    </button>
+    <div class="abstract-body">
+      This paper estimates the economic impacts of wildfire exposure using county-level panel data in the United States. It constructs a LitPop-weighted measure of wildfire exposure from MODIS burned area data and applies distributed lag models to capture wildfire impacts. The results show limited population responses, declines in unemployment consistent with post-fire reconstruction, and heterogeneous effects across high- and low-fire-frequency regions.
+    </div>
+  </div>
+</section>
+
+<section id="presentations">
+  <p class="section-label">Presentations</p>
+  <ul class="pres-list">
+    <li>
+      <span class="pres-name">AAEA–WAEA Joint Annual Meeting</span>
+      <span class="pres-year">2025, 2026</span>
+    </li>
+    <li>
+      <span class="pres-name">Midwest International Economic Development Conference (MWIEDC)</span>
+      <span class="pres-year">2026</span>
+    </li>
+    <li>
+      <span class="pres-name">AERE Annual Summer Meeting</span>
+      <span class="pres-year">2025</span>
+    </li>
+    <li>
+      <span class="pres-name">KDIS–World Bank DIME Development Impact Conference</span>
+      <span class="pres-year">2024</span>
+    </li>
+  </ul>
+</section>
+
+<section id="teaching">
+  <p class="section-label">Teaching</p>
+  <div class="teach-item">
+    <div class="teach-row">
+      <span class="teach-course">ACE 264 — Applied Statistical Methods and Data Analytics II</span>
+      <span class="teach-role">Teaching Assistant · Spring 2025, 2026</span>
+    </div>
+    <div class="teach-eval">
+      <span class="eval-score">Overall teaching effectiveness: 4.48 / 5.0 &nbsp;·&nbsp; Spring 2026, University of Illinois</span>
+      <div class="eval-quotes">
+        <blockquote>"Very passionate and willing to help students."</blockquote>
+        <blockquote>"Great and enthusiastic — wanted students to succeed."</blockquote>
+        <blockquote>"The TAs were very nice, patient, and always willing to help whenever we needed assistance."</blockquote>
+        <blockquote>"During review sessions, Hannah was very helpful!"</blockquote>
+      </div>
+    </div>
+  </div>
+  <div class="teach-item">
+    <div class="teach-row">
+      <span class="teach-course">ACE 251 — Global Food Security</span>
+      <span class="teach-role">Teaching Assistant · Fall 2022, Spring 2023</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <p class="contact-text">
+    I'm always happy to chat about research, the job market, or anything else. The best way to reach me is by email.
+  </p>
+  <p class="contact-text">
+    <a href="mailto:hannah16@illinois.edu">hannah16@illinois.edu</a>
+  </p>
+  <p class="contact-text" style="font-size:13px; color: var(--text-muted);">
+    Department of Agricultural and Consumer Economics<br>
+    University of Illinois Urbana-Champaign<br>
+    Urbana, IL 61801
+  </p>
+</section>
+
+<footer>
+  <span>Hannah Kim</span>
+  <span>Last updated June 2026</span>
+</footer>
+
+<script>
+  function toggleAbstract(btn) {
+    btn.classList.toggle('open');
+    var body = btn.nextElementSibling;
+    body.classList.toggle('open');
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
