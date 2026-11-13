@@ -265,6 +265,64 @@
       justify-content: space-between;
     }
 
+    /* Job market paper overview */
+.jmp-overview {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.jmp-figure {
+  margin: 22px 0;
+}
+
+.jmp-figure a {
+  display: block;
+}
+
+.jmp-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.jmp-figure figcaption {
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.jmp-findings-title {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.jmp-findings {
+  padding-left: 18px;
+}
+
+.jmp-findings li {
+  margin-bottom: 12px;
+  padding-left: 3px;
+}
+
+.jmp-findings li:last-child {
+  margin-bottom: 0;
+}
+
+.jmp-findings strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.jmp-takeaway {
+  margin-top: 18px;
+}
+    
     @media (max-width: 560px) {
       .hero { flex-direction: column; gap: 20px; }
       .avatar { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; }
@@ -320,23 +378,92 @@
 <section id="research">
   <p class="section-label">Research</p>
 
-  <div class="paper">
-    <p class="paper-title">Replanting Under Risk: Weather and Adaptation in Perennial Agriculture</p>
-    <p class="paper-meta">Job market paper &nbsp;·&nbsp; Solo authored</p>
-    <div class="paper-tags">
-      <span class="tag jmp">Job market paper</span>
-      <span class="tag">Ethiopia · LSMS-ISA · ERA5</span>
-    </div>
-    <div class="paper-links">
-      <a href="#">Draft (available upon request)</a>
-    </div>
-    <button class="abstract-toggle" onclick="toggleAbstract(this)">
-      <span class="arrow">&#9654;</span> Abstract
-    </button>
-    <div class="abstract-body">
-      I study how weather risk shapes perennial crop allocation among Ethiopian smallholders choosing between coffee, a relatively profitable but weather-sensitive crop, and khat, a more weather-tolerant alternative. I develop a portfolio model that treats perennial crops as long-lived assets and links land allocation to expected profits and profit variance. Using four rounds of Ethiopia’s LSMS household panel matched with ERA5 weather data, I estimate crop-specific weather-profit relationships and apply them to recent local weather histories to construct weather-based measures of expected profitability and profit variance. Coffee profits respond more strongly to weather than khat profits. Higher weather-induced variance in coffee profits predicts a lower coffee share in the following survey round, while higher khat profit variance and lower expected khat profit predict a higher coffee share. These patterns are consistent with farmers adjusting perennial crop portfolios in response to weather-driven changes in expected returns and risk.
-    </div>
+<div class="paper">
+  <p class="paper-title">
+    Replanting Under Risk: Weather and Adaptation in Perennial Agriculture
+  </p>
+  <p class="paper-meta">Job market paper &nbsp;·&nbsp; Solo authored</p>
+
+  <div class="paper-tags">
+    <span class="tag jmp">Job market paper</span>
+    <span class="tag">Ethiopia · LSMS-ISA · ERA5</span>
   </div>
+
+  <div class="paper-links">
+    <a href="#">Draft (available upon request)</a>
+  </div>
+
+  <div class="jmp-overview">
+    <p>
+      How does weather risk affect agricultural adaptation when farmers
+      in developing countries make long-lived investments? I apply a
+      portfolio-choice framework to coffee and khat in Ethiopia, two
+      perennial cash crops that compete for land but differ in their
+      weather sensitivity and risk-return profiles. Combining a
+      geolocated household panel with gridded weather data, I estimate
+      crop-specific weather-profit relationships and examine how
+      weather-induced expected profits and profit variances predict
+      subsequent land allocation.
+    </p>
+
+    <figure class="jmp-figure">
+      <a
+        href="JMP_Figure1.jpg"
+        target="_blank"
+        rel="noopener"
+        aria-label="Open the main results figure at full size"
+      >
+        <img
+          src="JMP_Figure1.jpg"
+          alt="Panel A shows a larger negative effect of extreme heat
+               on coffee profits than on khat profits. Panel B shows
+               that higher coffee profit variance predicts a lower
+               future coffee land share, while higher khat profit
+               variance predicts a higher share. Higher expected khat
+               profit predicts a lower coffee share."
+          loading="lazy"
+        >
+      </a>
+      <figcaption>
+        Weather sensitivity and perennial land allocation.
+        Click the figure to enlarge.
+      </figcaption>
+    </figure>
+
+    <p class="jmp-findings-title">Key findings</p>
+
+    <ul class="jmp-findings">
+      <li>
+        <strong>Coffee profits are more sensitive to extreme heat
+        than khat profits.</strong>
+        The crops respond differently to the same weather exposure,
+        changing their relative risk-return profiles.
+      </li>
+
+      <li>
+        <strong>Return risk predicts future land allocation, even
+        after accounting for expected profitability.</strong>
+        Higher coffee profit variance predicts a lower coffee share
+        of coffee-khat land, while higher khat profit variance
+        predicts a higher coffee share.
+      </li>
+
+      <li>
+        <strong>Historical weather changes imply a shift away
+        from coffee.</strong>
+        Applying the estimated portfolio coefficients to weather
+        changes between 1981–2000 and 2001–2020 implies a
+        1.62 percentage point decline in coffee land share,
+        equivalent to 2.6 percent of the sample mean.
+      </li>
+    </ul>
+
+    <p class="jmp-takeaway">
+      Policies that focus only on raising expected returns risk
+      overlooking an important barrier to long-term climate adaptation.
+    </p>
+  </div>
+</div>
 
   <div class="paper">
     <p class="paper-title">Global Extreme Weather and Early Childhood Undernourishment</p>
